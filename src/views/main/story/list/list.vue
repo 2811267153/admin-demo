@@ -1,18 +1,19 @@
 <template>
   <div class="list">
-    <h2>list</h2>
+    <h2>{{ $route.meta[0].title }}</h2>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script>
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'list',
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "list",
   setup() {
-    return {}
-  }
-})
+    return {};
+  },
+});
 </script>
 
 <style scoped></style>

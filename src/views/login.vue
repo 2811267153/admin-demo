@@ -26,6 +26,7 @@
         </el-form-item>
       </el-form>
     </div>
+    <router-view />
   </div>
 </template>
 

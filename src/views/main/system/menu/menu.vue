@@ -1,18 +1,19 @@
 <template>
-  <div class="menu">
+  <div class="nav-menu">
     <h2>menu</h2>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script>
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'menu',
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "nav-menu",
   setup() {
-    return {}
-  }
-})
+    return {};
+  },
+});
 </script>
 
 <style scoped></style>

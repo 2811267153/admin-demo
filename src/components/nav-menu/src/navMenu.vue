@@ -1,7 +1,7 @@
 <template>
   <div class="nav-menu">
     <div class="logo"></div>
-    <el-menu default-active="2">
+    <el-menu :default-active="defaultCurrentIndex">
       <template v-for="item in userMenu" :key="item.id">
         <template v-if="item.type === 1">
           <!--          二级菜单 及下面的子菜单-->
@@ -11,7 +11,10 @@
               <span>{{ item.name }}</span>
             </template>
             <template v-for="submit in item.children" :key="submit.id">
-              <el-menu-item :index="submit.id + ''">
+              <el-menu-item
+                @click="handMenuClick(submit)"
+                :index="submit.id + ''"
+              >
                 <i v-if="submit.icon" :class="submit.icon"></i>
                 <span>{{ submit.name }}</span>
               </el-menu-item>
@@ -33,15 +36,35 @@
 
 <script>
 import { useStore } from "vuex";
+import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
+import { pathMapToMenu } from "@/util/map-menu";
 
 export default {
   name: "navMenu",
   setup() {
+    //menu
     const store = useStore();
     const userMenu = store.state.login.menuList;
-    console.log(store.state.menuList);
+
+    //router
+    const router = useRouter();
+    const route = useRoute();
+    const currentPath = route.path;
+    console.log(userMenu, currentPath);
+
+    const menu = pathMapToMenu(userMenu, currentPath);
+    const defaultCurrentIndex = ref(menu.id + "");
+    const handMenuClick = (item) => {
+      router.push({
+        path: item.url ?? "/not-found",
+      });
+      console.log(router.options);
+    };
     return {
       userMenu,
+      defaultCurrentIndex,
+      handMenuClick,
     };
   },
 };

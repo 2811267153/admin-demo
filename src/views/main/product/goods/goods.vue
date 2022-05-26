@@ -4,15 +4,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script>
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'goods',
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "goods",
   setup() {
-    return {}
-  }
-})
+    return {};
+  },
+});
 </script>
 
 <style scoped></style>

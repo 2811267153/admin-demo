@@ -1,6 +1,7 @@
 import { getLogin, getUserId, getUserMenu } from "@/network/login";
 import cache from "@/util/cache";
 import router from "@/router";
+import { mapMenuToRouter } from "@/util/map-menu";
 
 const login = {
   state() {
@@ -19,6 +20,11 @@ const login = {
     },
     changeMenuList(state, menuList) {
       state.menuList = menuList;
+      const routes = mapMenuToRouter(menuList);
+      routes.forEach((route) => {
+        console.log(route);
+        router.addRoute("main", route);
+      });
     },
   },
   actions: {
@@ -42,7 +48,6 @@ const login = {
       cache.setCache("menuList", meunList);
 
       await router.push("/main");
-      console.log(meunList);
     },
 
     //初始化token
